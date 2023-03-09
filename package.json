@@ -1,6 +1,5 @@
 {
-  "name": "oop",
-  "description": "my oop playground",
+  "name": "lint-prettier-tmpl",
   "packageManager": "yarn@3.2.0",
   "lint-staged": {
     "*.{ts}": [
