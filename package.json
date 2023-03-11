@@ -12,7 +12,7 @@
         "module"
     ],
     "scripts": {
-        "webpack": "yarn workspace webpack"
+        "wp": "yarn workspace webpack"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "latest",
@@ -22,5 +22,8 @@
         "lint-staged": "^13.1.2",
         "prettier": "^2.8.4",
         "typescript": "^4.9.5"
+    },
+    "dependencies": {
+        "@types/node": "^18.15.0"
     }
 }
