@@ -1,1 +1,1 @@
-### lint & prettier boilerplate code template
+### typescript playground

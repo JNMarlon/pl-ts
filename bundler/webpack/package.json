@@ -1,0 +1,13 @@
+{
+    "name": "webpack",
+    "packageManager": "yarn@3.2.0",
+    "lint-staged": {
+        "*.{ts}": [
+            "prettier --write",
+            "eslint --fix"
+        ]
+    },
+    "devDependencies": {
+        "typescript": "^4.9.5"
+    }
+}
