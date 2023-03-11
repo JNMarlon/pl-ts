@@ -1,6 +1,6 @@
 import { Storage } from './storage';
 
-export class TypedStorage {
+export class CleanStorage {
     private storage: Storage;
 
     constructor(storage: Storage) {
