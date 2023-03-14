@@ -9,10 +9,12 @@
     },
     "workspaces": [
         "bundler/webpack",
-        "module"
+        "module",
+        "algo/oop"
     ],
     "scripts": {
-        "wp": "yarn workspace webpack"
+        "wp": "yarn workspace webpack",
+        "al": "yarn workspace algorithm"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "latest",
