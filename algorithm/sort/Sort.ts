@@ -7,13 +7,13 @@ export class Sort {
     public callbacks: any;
     public comparator: Comparator;
 
-    constructor(originalCallbacks) {
-        this.callbacks = Sort.initSortingCallbacks(originalCallbacks);
+    constructor(callbacks) {
+        this.callbacks = Sort.initCallbacks(callbacks);
         this.comparator = new Comparator(this.callbacks.compareCallback);
     }
 
-    static initSortingCallbacks(originCallbacks) {
-        const callbacks = originCallbacks || {};
+    static initCallbacks(_callbacks) {
+        const callbacks = _callbacks || {};
         const stubCallback = () => {};
 
         callbacks.compareCallback = callbacks.compareCallback || undefined;
