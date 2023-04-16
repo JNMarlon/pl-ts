@@ -34,32 +34,32 @@ export class BinarySearchTree {
     }
 
     private addNode(node: TreeNode, key: number) {
-        if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+        if (this.compareFn(key, node.key) === Compare.lessThan) {
             if (isNil(node.left)) node.left = new TreeNode(key);
             else this.addNode(node.left, key);
         }
-        if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+        if (this.compareFn(key, node.key) === Compare.biggerThan) {
             if (isNil(node.right)) node.right = new TreeNode(key);
             else this.addNode(node.right, key);
         }
-
-        throw new Error('Every key in Tree should be unique. Key you try to assigned is previously assigned before. Try other key');
+        if (this.compareFn(key, node.key) === Compare.equals)
+            throw new Error('Every key in Tree should be unique. Key you try to assigned is previously assigned before. Try other key');
     }
 
     private searchNode(node: TreeNode | null, key: number): boolean {
         if (isNil(node)) return false;
-        if (this.compareFn(key, node.key) === Compare.LESS_THAN) return this.searchNode(node.left, key);
-        if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) return this.searchNode(node.right, key);
+        if (this.compareFn(key, node.key) === Compare.lessThan) return this.searchNode(node.left, key);
+        if (this.compareFn(key, node.key) === Compare.biggerThan) return this.searchNode(node.right, key);
         return true;
     }
 
     private removeNode(node: TreeNode | null, key: number) {
         if (isNil(node)) return null;
-        if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+        if (this.compareFn(key, node.key) === Compare.lessThan) {
             node.left = this.removeNode(node.left, key);
             return node;
         }
-        if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+        if (this.compareFn(key, node.key) === Compare.biggerThan) {
             node.right = this.removeNode(node.right, key);
             return node;
         } else {
