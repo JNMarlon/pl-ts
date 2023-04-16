@@ -1,5 +1,3 @@
-import { Compare } from './constant';
-
 export const defaultToString = (item: any): string => {
     if (item === null) return 'NULL';
     if (item === undefined) return 'UNDEFINED';
