@@ -17,12 +17,12 @@ export class BinarySearchTree {
     }
     remove(key: number) {
         if (isNil(this._root)) return null;
-        this._root = this.removeNode(this._root, key);
+        else this._root = this.removeNode(this._root, key);
     }
 
     search(key: number) {
         if (!this._root) return false;
-        return this.searchNode(this._root, key);
+        else return this.searchNode(this._root, key);
     }
 
     get max() {
@@ -37,7 +37,6 @@ export class BinarySearchTree {
         if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
             if (isNil(node.left)) node.left = new TreeNode(key);
             else this.addNode(node.left, key);
-            return;
         }
         if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
             if (isNil(node.right)) node.right = new TreeNode(key);
