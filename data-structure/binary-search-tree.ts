@@ -16,7 +16,7 @@ export class BinarySearchTree {
 
     add(key: number) {
         if (isNil(this._root)) this._root = new TreeNode(key);
-        else this.addNode(this._root, key);
+        else this.addNode(key);
     }
     remove(key: number) {
         if (isNil(this._root)) return null;
