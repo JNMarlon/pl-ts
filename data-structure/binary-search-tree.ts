@@ -39,12 +39,12 @@ export class BinarySearchTree {
             else this.addNode(node.left, key);
             return;
         }
-        if (isNil(node.right)) {
-            node.right = new TreeNode(key);
-            return;
+        if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+            if (isNil(node.right)) node.right = new TreeNode(key);
+            else this.addNode(node.right, key);
         }
 
-        this.addNode(node.right, key);
+        throw new Error('Every key in Tree should be unique. Key you try to assigned is previously assigned before. Try other key');
     }
 
     private searchNode(node: TreeNode | null, key: number): boolean {
