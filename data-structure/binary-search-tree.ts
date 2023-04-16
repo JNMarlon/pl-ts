@@ -25,7 +25,7 @@ export class BinarySearchTree {
 
     search(key: number) {
         if (!this._root) return false;
-        else return this.searchNode(this._root, key);
+        else return this.searchNode(key);
     }
 
     get max() {
