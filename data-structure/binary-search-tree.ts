@@ -1,7 +1,10 @@
 import { TreeNode } from './internal/model';
 import { isNil } from './internal/isNil';
 import { Compare, defaultCompare, TCompareFunction } from './internal/compare';
-
+//이진 탐색 트리에는 크게 세 가지 연산이 필요함
+// 1. 탐색 (search)
+// 2. 삽입 (add)
+// 3. 삭제 (remove)
 export class BinarySearchTree {
     protected _root: TreeNode | null = null;
     protected compareFn: TCompareFunction<number> = defaultCompare;
