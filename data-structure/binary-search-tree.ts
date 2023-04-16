@@ -74,6 +74,7 @@ export class BinarySearchTree {
         return null;
     }
 
+    //TODO: 여기 좀 수정해야함
     private removeNode(node: TreeNode | null, key: number) {
         if (isNil(node)) return null;
         if (this.compareFn(key, node.key) === Compare.lessThan) {
