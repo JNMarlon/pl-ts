@@ -4,56 +4,74 @@ import { Compare, defaultCompare, TCompareFunction } from './internal/compare';
 //이진 탐색 트리에는 크게 세 가지 연산이 필요함
 // 1. 탐색 (search)
 // 2. 삽입 (add)
-// 3. 삭제 (remove)
+// 3. 삭제 (remove) => 제일 뭣같음
 export class BinarySearchTree {
-    protected _root: TreeNode | null = null;
+    protected _node: TreeNode;
     protected compareFn: TCompareFunction<number> = defaultCompare;
 
     constructor() {
         const initialKey = 1;
-        this._root = new TreeNode(initialKey);
+        this._node = new TreeNode(initialKey);
     }
 
     add(key: number) {
-        if (isNil(this._root)) this._root = new TreeNode(key);
-        else this.addNode(this._root, key);
+        if (isNil(this._node)) this._node = new TreeNode(key);
+        else this.addNode(this._node, key);
     }
     remove(key: number) {
-        if (isNil(this._root)) return null;
-        else this._root = this.removeNode(this._root, key);
+        if (isNil(this._node)) return null;
+        else this._node = this.removeNode(this._node, key);
     }
 
     search(key: number) {
-        if (!this._root) return false;
-        else return this.searchNode(this._root, key);
+        if (!this._node) return false;
+        else return this.searchNode(this._node, key);
     }
 
     get max() {
-        return BinarySearchTree.getMaxNode(this._root);
+        return BinarySearchTree.getMaxNode(this._node);
     }
 
     get min() {
-        return BinarySearchTree.getMinNode(this._root);
+        return BinarySearchTree.getMinNode(this._node);
     }
 
-    private addNode(node: TreeNode, key: number) {
-        if (this.compareFn(key, node.key) === Compare.lessThan) {
-            if (isNil(node.left)) node.left = new TreeNode(key);
-            else this.addNode(node.left, key);
+    private addNode(key: number) {
+        let node = this._node;
+
+        while (!isNil(node)) {
+            if (this.compareFn(key, this._node.key) === Compare.lessThan) {
+                if (isNil(node.left)) {
+                    node.left = new TreeNode(key);
+                    return node.left;
+                } else node = node.left; // continue
+            } else if (this.compareFn(key, this._node.key) === Compare.biggerThan) {
+                if (isNil(node.right)) {
+                    node.right = new TreeNode(key);
+                    return node.right;
+                } else node = node.right; // continue
+            } else if (this.compareFn(key, this._node.key) === Compare.equals) {
+                throw new Error('Every key in Tree should be unique. Key you try to assigned is previously assigned before. Try other key');
+            }
         }
-        if (this.compareFn(key, node.key) === Compare.biggerThan) {
-            if (isNil(node.right)) node.right = new TreeNode(key);
-            else this.addNode(node.right, key);
-        }
-        if (this.compareFn(key, node.key) === Compare.equals)
-            throw new Error('Every key in Tree should be unique. Key you try to assigned is previously assigned before. Try other key');
     }
 
-    private searchNode(node: TreeNode | null, key: number): boolean {
-        if (isNil(node)) return false;
-        if (this.compareFn(key, node.key) === Compare.lessThan) return this.searchNode(node.left, key);
-        if (this.compareFn(key, node.key) === Compare.biggerThan) return this.searchNode(node.right, key);
-        return true;
+    private searchNode(key: number) {
+        let node = this._node;
+
+        while (!isNil(node)) {
+            if (this.compareFn(key, this._node.key) === Compare.lessThan) {
+                if (!node.left) return null;
+                node = node.left;
+            } else if (this.compareFn(key, this._node.key) === Compare.biggerThan) {
+                if (!node.right) return null;
+                node = node.right;
+            } else if (this.compareFn(key, this._node.key) === Compare.equals) {
+                return node; // target
+            }
+        }
+
+        return null;
     }
 
     private removeNode(node: TreeNode | null, key: number) {
