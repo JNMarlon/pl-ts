@@ -6,67 +6,67 @@ import { Compare, defaultCompare, TCompareFunction } from './internal/compare';
 // 2. 삽입 (add)
 // 3. 삭제 (remove) => 제일 뭣같음
 export class BinarySearchTree {
-    protected _node: TreeNode;
+    protected _root: TreeNode;
     protected compareFn: TCompareFunction<number> = defaultCompare;
 
     constructor() {
         const initialKey = 1;
-        this._node = new TreeNode(initialKey);
+        this._root = new TreeNode(initialKey);
     }
 
     add(key: number) {
-        if (isNil(this._node)) this._node = new TreeNode(key);
-        else this.addNode(this._node, key);
+        if (isNil(this._root)) this._root = new TreeNode(key);
+        else this.addNode(this._root, key);
     }
     remove(key: number) {
-        if (isNil(this._node)) return null;
-        else this._node = this.removeNode(this._node, key);
+        if (isNil(this._root)) return null;
+        else this._root = this.removeNode(this._root, key);
     }
 
     search(key: number) {
-        if (!this._node) return false;
-        else return this.searchNode(this._node, key);
+        if (!this._root) return false;
+        else return this.searchNode(this._root, key);
     }
 
     get max() {
-        return BinarySearchTree.getMaxNode(this._node);
+        return BinarySearchTree.getMaxNode(this._root);
     }
 
     get min() {
-        return BinarySearchTree.getMinNode(this._node);
+        return BinarySearchTree.getMinNode(this._root);
     }
 
     private addNode(key: number) {
-        let node = this._node;
+        let node = this._root;
 
         while (!isNil(node)) {
-            if (this.compareFn(key, this._node.key) === Compare.lessThan) {
+            if (this.compareFn(key, node.key) === Compare.lessThan) {
                 if (isNil(node.left)) {
                     node.left = new TreeNode(key);
                     return node.left;
                 } else node = node.left; // continue
-            } else if (this.compareFn(key, this._node.key) === Compare.biggerThan) {
+            } else if (this.compareFn(key, node.key) === Compare.biggerThan) {
                 if (isNil(node.right)) {
                     node.right = new TreeNode(key);
                     return node.right;
                 } else node = node.right; // continue
-            } else if (this.compareFn(key, this._node.key) === Compare.equals) {
+            } else if (this.compareFn(key, node.key) === Compare.equals) {
                 throw new Error('Every key in Tree should be unique. Key you try to assigned is previously assigned before. Try other key');
             }
         }
     }
 
     private searchNode(key: number) {
-        let node = this._node;
+        let node = this._root;
 
         while (!isNil(node)) {
-            if (this.compareFn(key, this._node.key) === Compare.lessThan) {
+            if (this.compareFn(key, this._root.key) === Compare.lessThan) {
                 if (!node.left) return null;
                 node = node.left;
-            } else if (this.compareFn(key, this._node.key) === Compare.biggerThan) {
+            } else if (this.compareFn(key, this._root.key) === Compare.biggerThan) {
                 if (!node.right) return null;
                 node = node.right;
-            } else if (this.compareFn(key, this._node.key) === Compare.equals) {
+            } else if (this.compareFn(key, this._root.key) === Compare.equals) {
                 return node; // target
             }
         }
