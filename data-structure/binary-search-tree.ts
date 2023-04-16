@@ -60,13 +60,13 @@ export class BinarySearchTree {
         let node = this._root;
 
         while (!isNil(node)) {
-            if (this.compareFn(key, this._root.key) === Compare.lessThan) {
+            if (this.compareFn(key, node.key) === Compare.lessThan) {
                 if (!node.left) return null;
                 node = node.left;
-            } else if (this.compareFn(key, this._root.key) === Compare.biggerThan) {
+            } else if (this.compareFn(key, node.key) === Compare.biggerThan) {
                 if (!node.right) return null;
                 node = node.right;
-            } else if (this.compareFn(key, this._root.key) === Compare.equals) {
+            } else if (this.compareFn(key, node.key) === Compare.equals) {
                 return node; // target
             }
         }
