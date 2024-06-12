@@ -48,4 +48,15 @@ class SinglyLinkedList {
         newNode.next = node.next;
         node.next = newNode;
     }
+
+    remove<V>(value: V) {
+        let prevNode = this.head;
+        while (prevNode?.next?.value !== value) {
+            if (prevNode) prevNode = prevNode?.next;
+        }
+
+        if (prevNode.next !== null) {
+            prevNode.next = prevNode.next.next;
+        }
+    }
 }
