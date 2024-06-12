@@ -59,4 +59,16 @@ class SinglyLinkedList {
             prevNode.next = prevNode.next.next;
         }
     }
+
+    log() {
+        let currNode = this.head;
+        let displayStr = '[';
+        while (currNode !== null) {
+            displayStr += currNode.value;
+            currNode = currNode.next;
+        }
+
+        displayStr += ']';
+        console.log(displayStr);
+    }
 }
