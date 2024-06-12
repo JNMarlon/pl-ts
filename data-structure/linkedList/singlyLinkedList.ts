@@ -42,4 +42,10 @@ class SinglyLinkedList {
             this.tail = newNode;
         }
     }
+
+    insert<V>(node: INode, newValue: V) {
+        const newNode = new _Node(newValue);
+        newNode.next = node.next;
+        node.next = newNode;
+    }
 }
