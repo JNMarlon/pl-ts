@@ -14,7 +14,7 @@ class _Node implements INode {
 }
 
 class SinglyLinkedList {
-    private readonly head: INode | null;
+    private head: INode | null;
     private tail: INode | null;
 
     constructor() {
@@ -30,5 +30,16 @@ class SinglyLinkedList {
             }
         }
         return currNode;
+    }
+
+    append<V>(newValue: V) {
+        const newNode = new _Node(newValue);
+        if (this.head === null) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            if (this.tail) this.tail.next = newNode;
+            this.tail = newNode;
+        }
     }
 }
