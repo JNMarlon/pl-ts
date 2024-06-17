@@ -1,4 +1,4 @@
-import { Stack } from './stack.linked_list';
+import { Stack } from './stack.array';
 
 describe('Stack Array', () => {
     it('push', () => {
@@ -8,12 +8,12 @@ describe('Stack Array', () => {
         stack.push(2);
 
         expect(stack.size).toBe(2);
-        expect(stack.top?.value).toBe(2);
+        expect(stack.top).toBe(2);
 
         stack.push(3);
 
         expect(stack.size).toBe(3);
-        expect(stack.top?.value).toBe(3);
+        expect(stack.top).toBe(3);
     });
     it('pop', () => {
         const stack = new Stack<number>();
@@ -24,6 +24,6 @@ describe('Stack Array', () => {
         stack.pop();
 
         expect(stack.size).toBe(1);
-        expect(stack.top?.value).toBe(1);
+        expect(stack.top).toBe(1);
     });
 });
