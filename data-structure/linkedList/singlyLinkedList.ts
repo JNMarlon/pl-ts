@@ -7,7 +7,7 @@ class _Node implements INode {
     public value;
     public next: _Node | null;
 
-    constructor(value: any) {
+    constructor(value: unknown) {
         this.value = value;
         this.next = null;
     }
